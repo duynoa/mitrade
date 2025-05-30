@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input } from '../components/ui/input';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../favicon.png';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
