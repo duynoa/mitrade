@@ -42,7 +42,7 @@ export default function Login() {
           <Input
             type="email"
             label={undefined}
-            placeholder="Tên đăng nhập"
+            placeholder="Username"
             value={email}
             onChange={e => setEmail(e.target.value)}
             autoComplete="email"
@@ -54,7 +54,7 @@ export default function Login() {
           <Input
             type="password"
             label={undefined}
-            placeholder="Mật khẩu"
+            placeholder="Password"
             value={password}
             onChange={e => setPassword(e.target.value)}
             autoComplete="current-password"

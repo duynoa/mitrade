@@ -54,7 +54,7 @@ export function LanguageSelection() {
           <p className="text-gray-500 text-sm">Professional transaction management system</p>
         </div>
 
-        <h2 className="text-xl font-semibold text-gray-700 mb-4">Chọn quốc gia của bạn</h2>
+        <h2 className="text-xl font-semibold text-gray-700 mb-4">Choose your country</h2>
         
         <div className="flex justify-center gap-2 xl:gap-4 w-fit xl:w-full">
           {languages.map((lang) => (
