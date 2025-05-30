@@ -8,7 +8,8 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
   server: {
-    middlewareMode: true,
+    port: 3000,
+    strictPort: false,
   },
   build: {
     rollupOptions: {

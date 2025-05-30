@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input } from '../components/ui/input';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../favicon.png';
@@ -8,6 +8,14 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  // Kiểm tra selectedLanguage khi component mount
+  useEffect(() => {
+    const selectedLanguage = localStorage.getItem('selectedLanguage');
+    if (!selectedLanguage) {
+      navigate('/');
+    }
+  }, [navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
