@@ -13,7 +13,7 @@ import {
   CircleUser,
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import logo from '../../assets/images/logo-mytrade.svg';
+import logo from '/public/assets/images/logo-mytrade.svg';
 
 interface SidebarLinkProps {
   to: string;

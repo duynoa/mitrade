@@ -3,8 +3,8 @@ import { Input } from '../components/ui/input';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../favicon.png';
 export default function Login() {
-  const [email, setEmail] = useState('admin@mytrade.com');
-  const [password, setPassword] = useState('12345');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ export default function Login() {
           <Input
             type="email"
             label={undefined}
-            placeholder="Nhập email"
+            placeholder="Tên đăng nhập"
             value={email}
             onChange={e => setEmail(e.target.value)}
             autoComplete="email"
@@ -54,7 +54,7 @@ export default function Login() {
           <Input
             type="password"
             label={undefined}
-            placeholder="Nhập mật khẩu"
+            placeholder="Mật khẩu"
             value={password}
             onChange={e => setPassword(e.target.value)}
             autoComplete="current-password"

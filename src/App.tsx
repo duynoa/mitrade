@@ -1,19 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { DashboardLayout } from './components/layouts/dashboard-layout';
-import { DashboardPage } from './pages/dashboard';
-import { CashierPage } from './pages/cashier';
-import { MembersPage } from './pages/members';
-import { TransactionsPage } from './pages/transactions';
-import { SupportPage } from './pages/support';
 import { AnalyzePage } from './pages/analyze';
+import { CashierPage } from './pages/cashier';
+import { DashboardPage } from './pages/dashboard';
 import Login from './pages/Login';
+import { MembersPage } from './pages/members';
+import { SupportPage } from './pages/support';
+import { TransactionsPage } from './pages/transactions';
+import LanguageSelection from './pages/LanguageSelection';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<LanguageSelection />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardPage />} />
           <Route path="cashier" element={<CashierPage />} />
