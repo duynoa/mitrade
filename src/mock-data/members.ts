@@ -69,7 +69,7 @@ function generateMember(id: number): Member {
     email: generateEmail(name),
     phone: generatePhone(),
     status,
-    balance: Math.floor(Math.random() * 10000000),
+    balance: Math.floor(Math.random() * 1000000),
     createdAt,
     lastLogin,
   };

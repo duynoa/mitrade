@@ -38,12 +38,12 @@ const currencyPairs = [
 
 export function generateSystemStats(): SystemStats {
   return {
-    totalMembers: 728027,
-    activeMembers: Math.floor(728000 * 0.75),
-    visitorsYesterday: 376096,
-    visitorsToday: 303055,
-    totalVisitors: 1500000,
-    totalProfit: 2068005,
+    totalMembers: 110023,
+    activeMembers: Math.floor(110023 * 0.75),
+    visitorsYesterday: 80483,
+    visitorsToday: 26539,
+    totalVisitors: 110023,
+    totalProfit: 270394,
   };
 }
 

@@ -105,7 +105,7 @@ export function TransactionsPage() {
               <div>
                 <p className="text-sm font-medium text-gray-500">Tổng nạp tiền</p>
                 <h4 className="mt-2 text-2xl font-bold text-gray-900">
-                  {formatCurrency(6174939)}
+                  {formatCurrency(320865)}
                 </h4>
               </div>
               <div className="p-2 bg-success-50 rounded-full">

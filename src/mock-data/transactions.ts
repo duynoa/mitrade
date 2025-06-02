@@ -51,10 +51,10 @@ const users = Array.from({ length: 200 }, (_, i) => ({
 
 export function getTransactionStats() {
   return {
-    totalDeposits: 6174939,
-    totalWithdrawals: 1738022,
-    pendingDeposits:  7756,
-    pendingWithdrawals: 2423
+    totalDeposits: 320865,
+    totalWithdrawals: 57289,
+    pendingDeposits:  27,
+    pendingWithdrawals: 16
   };
 }
 

@@ -1,11 +1,11 @@
+import { CheckCircle, Edit2, Search, UserPlus, XCircle } from 'lucide-react';
 import React, { useState } from 'react';
-import { Search, Filter, UserPlus, Edit2, Trash2, CheckCircle, XCircle } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card';
-import { Input } from '../../components/ui/input';
-import { Button } from '../../components/ui/button';
-import { Select } from '../../components/ui/select';
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '../../components/ui/table';
 import { Badge } from '../../components/ui/badge';
+import { Button } from '../../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
+import { Input } from '../../components/ui/input';
+import { Select } from '../../components/ui/select';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table';
 import { formatCurrency, formatDate } from '../../lib/utils';
 import { generateMembers, Member } from '../../mock-data/members';
 
@@ -136,7 +136,6 @@ export function MembersPage() {
                 <TableHead>ID</TableHead>
                 <TableHead>Tên</TableHead>
                 <TableHead>Email</TableHead>
-                <TableHead>Số điện thoại</TableHead>
                 <TableHead>Số dư</TableHead>
                 <TableHead>Trạng thái</TableHead>
                 <TableHead>Ngày tạo</TableHead>
@@ -156,7 +155,6 @@ export function MembersPage() {
                     <TableCell className="font-medium">{member.id}</TableCell>
                     <TableCell>{member.name}</TableCell>
                     <TableCell>{member.email}</TableCell>
-                    <TableCell>{member.phone}</TableCell>
                     <TableCell className="font-medium">
                       {formatCurrency(member.balance)}
                     </TableCell>

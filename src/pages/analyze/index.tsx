@@ -4,9 +4,9 @@ import { ArrowUpRight, ArrowDownRight } from 'lucide-react';
 // Mock data for the financial analysis
 const financialData = {
   currentYear: {
-    totalProfit: 22505068,
-    positiveProfit: 12505068,
-    negativeProfit: -1446768,
+    totalProfit: 180394,
+    positiveProfit: 110023,
+    negativeProfit: -40478,
     quarterlyData: [
       { quarter: 'Q1/2025', profit: 567676, positive: 285000, negative: -76565 }
     ],
@@ -59,7 +59,7 @@ export function AnalyzePage() {
               growth >= 0 ? 'text-green-600' : 'text-red-600'
             }`}>
               {growth >= 0 ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />}
-              64,5%
+              81,64%
             </span>
           </div>
           <p className="mt-1 text-sm text-gray-500">
