@@ -117,43 +117,47 @@ export function getTransactionsByType(
   return transactions.filter((transaction) => transaction.type === type);
 }
 
-export function getTransactionChartData(transactions: Transaction[], days: number = 7) {
-  const now = new Date();
-  const result = [];
-  
-  const depositsList = [
-    1839020,
-    -3380099,
-    -870000,
-    1038928,
-    2033089,
-    -1278400,
-    2893033
-  ];
-  
-  for (let i = days - 1; i >= 0; i--) {
-    const date = subDays(now, i);
-    const dateString = format(date, 'dd/MM');
-    
-    const dayTransactions = transactions.filter((tx) => {
-      const txDate = new Date(tx.createdAt);
-      return (
-        txDate.getDate() === date.getDate() &&
-        txDate.getMonth() === date.getMonth() &&
-        txDate.getFullYear() === date.getFullYear()
-      );
-    });
+// Biến lưu trữ dữ liệu chart để giữ lại giữa các lần cập nhật
+let chartDataCache: Array<{name: string; value: number; deposit: number; withdrawal: number}> = [];
 
-    const withdrawals = dayTransactions
-      .filter((tx) => tx.type === 'withdrawal')
-      .reduce((sum, tx) => sum + tx.amount, 0);
-    
-    result.push({
-      name: dateString,
-      deposit: depositsList.reverse()[i] || 0,
-      withdrawal: 0,
-    });
+export function getTransactionChartData(transactions: Transaction[], hours: number = 24) {
+  const now = new Date();
+  
+  // Nếu cache rỗng, khởi tạo dữ liệu ban đầu
+  if (chartDataCache.length === 0) {
+    for (let i = hours - 1; i >= 0; i--) {
+      const hour = new Date(now);
+      hour.setHours(now.getHours() - i);
+      const hourString = `${hour.getHours()}:00`;
+      
+      // Tạo dữ liệu ngẫu nhiên
+      const depositAmount = Math.floor(Math.random() * 1000000) + 200000;
+      const value = Math.random() > 0.3 ? depositAmount : -depositAmount * 0.5;
+      
+      chartDataCache.push({
+        name: hourString,
+        value: value,
+        deposit: value,
+        withdrawal: Math.floor(Math.random() * 500000) + 100000,
+      });
+    }
+    return [...chartDataCache];
   }
   
-  return result;
+  // Cập nhật dữ liệu: xóa phần tử đầu tiên và thêm dữ liệu mới vào cuối
+  chartDataCache.shift();
+  
+  // Tạo dữ liệu mới cho giờ hiện tại
+  const currentHour = `${now.getHours()}:00`;
+  const depositAmount = Math.floor(Math.random() * 1000000) + 200000;
+  const value = Math.random() > 0.3 ? depositAmount : -depositAmount * 0.5;
+  
+  chartDataCache.push({
+    name: currentHour,
+    value: value,
+    deposit: value,
+    withdrawal: Math.floor(Math.random() * 500000) + 100000,
+  });
+  
+  return [...chartDataCache];
 }

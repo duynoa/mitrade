@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Filter, Calendar, Download, Wallet, ArrowDown, ArrowUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card';
 import { Input } from '../../components/ui/input';
@@ -21,10 +21,20 @@ export function TransactionsPage() {
   const [statusFilter, setStatusFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const [chartData, setChartData] = useState(getTransactionChartData(transactions));
+  const [showWithdrawal, setShowWithdrawal] = useState(false);
   const itemsPerPage = 10; // Adjust as needed
   
-  const stats = getTransactionStats(transactions);
-  const chartData = getTransactionChartData(transactions);
+  const stats = getTransactionStats();
+  
+  // Cập nhật dữ liệu biểu đồ mỗi 3 giây
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setChartData(getTransactionChartData(transactions));
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [transactions]);
   
   const filteredTransactions = transactions.filter((transaction) => {
     // Apply search filter
@@ -166,12 +176,36 @@ export function TransactionsPage() {
       
       <Card>
         <CardHeader>
-          <CardTitle>Thống kê giao dịch 7 ngày qua</CardTitle>
+          <CardTitle>Thống kê giao dịch 24 giờ qua (Cập nhật realtime)</CardTitle>
+          <CardDescription>Dữ liệu được cập nhật mỗi 5 giây</CardDescription>
         </CardHeader>
         <CardContent>
+          <div className="mb-4 flex items-center justify-between">
+            <div className="flex items-center space-x-8">
+              <div className="flex items-center">
+                <div className="mr-2 h-3 w-3 rounded-full bg-primary"></div>
+                <span className="text-sm text-gray-500">Nạp tiền</span>
+              </div>
+              {showWithdrawal && (
+                <div className="flex items-center">
+                  <div className="mr-2 h-3 w-3 rounded-full bg-error-500"></div>
+                  <span className="text-sm text-gray-500">Rút tiền</span>
+                </div>
+              )}
+            </div>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => setShowWithdrawal(!showWithdrawal)}
+            >
+              {showWithdrawal ? 'Ẩn rút tiền' : 'Hiện rút tiền'}
+            </Button>
+          </div>
           <AreaChart 
             data={chartData}
             dataKey="deposit"
+            secondaryDataKey={showWithdrawal ? "withdrawal" : undefined}
+            secondaryColor="#f43f5e"
             xAxisKey="name"
             height={300}
           />
